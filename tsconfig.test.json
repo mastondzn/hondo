@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "target": "es2022",
+        "lib": ["es2022"],
+        "module": "preserve",
+        "paths": {
+            "~/*": ["./src/*"]
+        },
+        "resolveJsonModule": true,
+        "types": [
+            "@cloudflare/workers-types/experimental",
+            "@cloudflare/vitest-pool-workers",
+            "vitest/globals"
+        ],
+        "strict": true,
+        "noUncheckedIndexedAccess": true,
+        "noEmit": true,
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+        "isolatedModules": true,
+        "skipLibCheck": true
+    },
+    "include": ["./tests/**/*.ts"]
+}

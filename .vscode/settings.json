@@ -1,0 +1,28 @@
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+    "prettier.enable": true,
+    "prettier.prettierPath": "./node_modules/prettier",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit",
+        "source.organizeImports": "never"
+    },
+
+    "typescript.tsdk": "node_modules/typescript/lib",
+
+    "eslint.validate": [
+        "github-actions-workflow",
+        "html",
+        "javascript",
+        "javascriptreact",
+        "json",
+        "jsonc",
+        "markdown",
+        "toml",
+        "typescript",
+        "typescriptreact",
+        "vue",
+        "yaml"
+    ]
+}
