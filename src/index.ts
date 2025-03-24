@@ -68,14 +68,16 @@ export function hondo<
     TRouter extends Hono<THondoEnv>,
 >(router: TRouter, options: HondoOptions<TFields> = {}) {
     return class Hondo extends DurableObject<Cloudflare.Env> {
-        env: Cloudflare.Env;
-        state: DurableObjectState;
-        router: TRouter;
+        public env: Cloudflare.Env;
+        public state: DurableObjectState;
+        public router: TRouter;
+        public ctx: DurableObjectState;
 
         constructor(state: DurableObjectState, env: Cloudflare.Env) {
             super(state, env);
             this.env = env;
             this.state = state;
+            this.ctx = state;
 
             const fields =
                 (typeof options.fields === 'function' ? options.fields() : options.fields) ?? {};

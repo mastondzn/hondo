@@ -1,0 +1,53 @@
+name: Release
+
+on:
+    push:
+        tags: ['v*']
+    workflow_dispatch:
+
+jobs:
+    release:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+            id-token: write
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v4
+
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v4
+
+            - name: Setup Node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+
+            - name: Install dependencies
+              run: pnpm install
+
+            - name: Run build
+              run: pnpm build
+
+              # We make sure ci is passing before releasing
+            - name: Wait for CI to finish
+              uses: lewagon/wait-on-check-action@v1.3.3
+              if: github.event_name == 'push'
+              with:
+                  ref: ${{ github.ref }}
+                  check-name: ci
+                  repo-token: ${{ secrets.GITHUB_TOKEN }}
+                  verbose: true
+                  wait-interval: 8
+
+            - name: Set publishing config
+              run: pnpm config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+            - name: Create release
+              run: pnpm publish --no-git-checks
+
+            - run: pnpx changelogithub
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

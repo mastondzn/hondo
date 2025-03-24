@@ -11,14 +11,34 @@
     "bugs": {
         "url": "https://github.com/mastondzn/hondo/issues"
     },
-    "keywords": [],
+    "keywords": [
+        "do",
+        "durable-objects",
+        "cloudflare",
+        "hono"
+    ],
+    "publishConfig": {
+        "access": "public",
+        "provenance": true
+    },
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js"
+        }
+    },
     "main": "src/index.ts",
+    "files": [
+        "dist"
+    ],
     "scripts": {
         "test": "vitest",
+        "build": "tsup",
         "lint": "eslint .",
         "format": "prettier --write .",
         "format:check": "prettier --check .",
-        "typecheck": "tsc -p tsconfig.test.json && tsc -p tsconfig.lib.json"
+        "typecheck": "tsc -p tsconfig.test.json && tsc -p tsconfig.lib.json",
+        "release": "bumpp"
     },
     "peerDependencies": {
         "hono": "^4.7.5"
@@ -29,9 +49,12 @@
         "@hono/standard-validator": "^0.1.2",
         "@mastondzn/eslint": "^1.2.0",
         "@types/node": "^22.13.11",
+        "bumpp": "^10.1.0",
         "eslint": "^9.23.0",
         "hono": "^4.7.5",
         "prettier": "^3.5.3",
+        "tsup": "^8.4.0",
+        "typescript": "^5.8.2",
         "vite-tsconfig-paths": "^5.1.4",
         "vitest": "^3.0.9",
         "wrangler": "^4.4.0",
