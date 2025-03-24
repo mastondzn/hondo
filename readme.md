@@ -5,7 +5,7 @@ Enhanced Cloudflare Durable Objects with hono.
 ## Installation
 
 ```bash
-pnpm install hondo
+pnpm install @mastondzn/hondo hono
 ```
 
 ## Usage

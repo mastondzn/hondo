@@ -1,5 +1,5 @@
 {
-    "name": "hondo",
+    "name": "@mastondzn/hondo",
     "type": "module",
     "version": "0.1.0",
     "packageManager": "pnpm@10.6.5",
